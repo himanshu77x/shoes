@@ -93,14 +93,17 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 STATIC_URL = '/static/'
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')  # ✅ Collectstatic के लिए
 
-STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'static'),
-    os.path.join(BASE_DIR, 'app/static')
-]
+STATIC_URL = '/static/'
+STATICFILES_DIRS = [BASE_DIR / "static"]  # Ensure this exists
+STATIC_ROOT = BASE_DIR / "staticfiles"  # Ensure this exists
 
-STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"  # ✅ Whitenoise Static Storage
+
+
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')  # collectstatic के लिए
+
+STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"  # ✅ Whitenoise use कर रहे हो
+
 
 # Media files
 MEDIA_URL = '/media/'

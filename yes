@@ -1,0 +1,143 @@
+[1mdiff --git a/sh/settings.py b/sh/settings.py[m
+[1mindex 6870acc..f99052f 100644[m
+[1m--- a/sh/settings.py[m
+[1m+++ b/sh/settings.py[m
+[36m@@ -11,25 +11,21 @@[m [mhttps://docs.djangoproject.com/en/5.1/ref/settings/[m
+ """[m
+ [m
+ from pathlib import Path[m
+[32m+[m[32mimport os[m
+ [m
+ # Build paths inside the project like this: BASE_DIR / 'subdir'.[m
+ BASE_DIR = Path(__file__).resolve().parent.parent[m
+ [m
+[31m-[m
+ # Quick-start development settings - unsuitable for production[m
+[31m-# See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/[m
+[31m-[m
+ # SECURITY WARNING: keep the secret key used in production secret![m
+ SECRET_KEY = 'django-insecure-f3ch88-7*1=8(n*p2o#_uuncab$g!=l=1gz-)ezxonwg-)6gcd'[m
+ [m
+ # SECURITY WARNING: don't run with debug turned on in production![m
+[31m-DEBUG = True[m
+[31m-[m
+[31m-ALLOWED_HOSTS = ['shoes-3.onrender.com'][m
+[31m-[m
+[31m-[m
+[32m+[m[32mDEBUG = False  # ✅ Production के लिए False कर दिया[m
+ [m
+[32m+[m[32mALLOWED_HOSTS = ['shoes-3.onrender.com', '127.0.0.1'][m
+ [m
+[32m+[m[32m# Installed Apps[m
+ INSTALLED_APPS = [[m
+     'app',[m
+     'django.contrib.admin',[m
+[36m@@ -38,12 +34,14 @@[m [mINSTALLED_APPS = [[m
+     'django.contrib.sessions',[m
+     'django.contrib.messages',[m
+     'django.contrib.staticfiles',[m
+[32m+[m[32m    'whitenoise.runserver_nostatic',  # ✅ Whitenoise for static files[m
+ ][m
+ [m
+[32m+[m[32m# Middleware[m
+ MIDDLEWARE = [[m
+     'django.middleware.security.SecurityMiddleware',[m
+[32m+[m[32m    'whitenoise.middleware.WhiteNoiseMiddleware',  # ✅ Whitenoise Middleware[m
+     'django.contrib.sessions.middleware.SessionMiddleware',[m
+[31m-    'django.contrib.messages.middleware.MessageMiddleware',[m
+     'django.middleware.common.CommonMiddleware',[m
+     'django.middleware.csrf.CsrfViewMiddleware',[m
+     'django.contrib.auth.middleware.AuthenticationMiddleware',[m
+[36m@@ -71,10 +69,7 @@[m [mTEMPLATES = [[m
+ [m
+ WSGI_APPLICATION = 'sh.wsgi.application'[m
+ [m
+[31m-[m
+ # Database[m
+[31m-# https://docs.djangoproject.com/en/5.1/ref/settings/#databases[m
+[31m-[m
+ DATABASES = {[m
+     'default': {[m
+         'ENGINE': 'django.db.backends.sqlite3',[m
+[36m@@ -82,61 +77,39 @@[m [mDATABASES = {[m
+     }[m
+ }[m
+ [m
+[31m-[m
+ # Password validation[m
+[31m-# https://docs.djangoproject.com/en/5.1/ref/settings/#auth-password-validators[m
+[31m-[m
+ AUTH_PASSWORD_VALIDATORS = [[m
+[31m-    {[m
+[31m-        'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',[m
+[31m-    },[m
+[31m-    {[m
+[31m-        'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',[m
+[31m-    },[m
+[31m-    {[m
+[31m-        'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',[m
+[31m-    },[m
+[31m-    {[m
+[31m-        'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',[m
+[31m-    },[m
+[32m+[m[32m    {'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator'},[m
+[32m+[m[32m    {'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator'},[m
+[32m+[m[32m    {'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator'},[m
+[32m+[m[32m    {'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator'},[m
+ ][m
+ [m
+[31m-[m
+[31m-[m
+[32m+[m[32m# Localization[m
+ LANGUAGE_CODE = 'en-us'[m
+[31m-[m
+ TIME_ZONE = 'UTC'[m
+[31m-[m
+ USE_I18N = True[m
+[31m-[m
+ USE_TZ = True[m
+ [m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-import os[m
+[31m-[m
+[31m-[m
+[31m-MEDIA_URL = '/media/'[m
+[31m-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')[m
+[31m-LOGIN_REDIRECT_URL = '/profile/'[m
+[31m-[m
+[31m-[m
+[31m-import os[m
+[31m-[m
+[32m+[m[32m# Static files (CSS, JavaScript, Images)[m
+ STATIC_URL = '/static/'[m
+[32m+[m[32mSTATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')  # ✅ Collectstatic के लिए[m
+ [m
+ STATICFILES_DIRS = [[m
+[31m-    os.path.join(BASE_DIR, 'static')  [m
+[31m-][m
+[31m-STATICFILES_DIRS = [[m
+[31m-    os.path.join(BASE_DIR, 'app/static')  [m
+[32m+[m[32m    os.path.join(BASE_DIR, 'static'),[m
+[32m+[m[32m    os.path.join(BASE_DIR, 'app/static')[m
+ ][m
+ [m
+[31m-LOGIN_URL = '/account/login/'[m
+[31m-LOGOUT_REDIRECT_URL = 'login'  # Redirect to login page after logout[m
+[32m+[m[32mSTATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"  # ✅ Whitenoise Static Storage[m
+ [m
+[32m+[m[32m# Media files[m
+[32m+[m[32mMEDIA_URL = '/media/'[m
+[32m+[m[32mMEDIA_ROOT = os.path.join(BASE_DIR, 'media')[m
+ [m
+[32m+[m[32m# Authentication[m
+[32m+[m[32mLOGIN_URL = '/account/login/'[m
+[32m+[m[32mLOGIN_REDIRECT_URL = '/profile/'[m
+[32m+[m[32mLOGOUT_REDIRECT_URL = 'login'[m
+ [m
+[31m-EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'[m
+\ No newline at end of file[m
+[32m+[m[32m# Email[m
+[32m+[m[32mEMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'[m
