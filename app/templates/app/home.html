@@ -1,0 +1,128 @@
+{% extends "app/base.html" %}
+{% load static %}
+
+{% block title %}Home{% endblock title %}
+
+{% block banner-slider %}
+<div data-aos="fade-up" id="carouselExampleSlidesOnly" class="carousel slide" data-bs-ride="carousel">
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+      <img src="{% static 'app/images/banner/p1.jpg' %}" class="d-block w-100" alt="Banner Image 1">
+    </div>
+  </div>
+</div>
+{% endblock banner-slider %}
+
+{% block information %}
+<div data-aos="fade-up" class="container">
+  <div class="row">
+    <h1 class="text-center" data-aos="fade-up" style="font-size: 40px;
+font-weight: 700;
+text-transform: uppercase;
+background: linear-gradient(to right, #444, #bbb);
+-webkit-background-clip: text;
+-webkit-text-fill-color: transparent;
+text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2); margin-top:11px;">
+      ABOUT US
+    </h1>
+
+    <img data-aos="fade-up" src="{% static 'app/images/banner/h4.png' %}" class="img-fluid d-block mx-auto border-0" alt="About Us">
+  
+    <br><br>
+
+    <small data-aos="fade-up" class="text-center fs-5">
+      Welcome to Shoes Store, where style meets comfort! We are passionate about providing high-quality footwear <br>
+      that complements every step you take. Our collection is designed to cater to all styles, from trendy sneakers and formal shoes to casual wear and sports footwear.
+      <br><br>
+      At Shoes Store, we believe that shoes are more than just an accessory—they reflect your personality and confidence. That's why we focus on premium craftsmanship, durability, and the latest fashion trends. Whether you're looking for everyday comfort or something stylish for a special occasion, we've got you covered.
+      <br><br>
+      Customer satisfaction is our top priority. We ensure a seamless shopping experience, hassle-free returns, and exceptional customer support.
+    </small>
+  </div>
+</div>
+{% endblock information %}
+
+<br><br>
+
+{% block main-content %}
+<div data-aos="fade-up" class="container my-5">
+  <div class="row align-items-center">
+    <div data-aos="fade-up" class="col-md-6">
+      <img src="{% static 'app/images/product/y1.jpg' %}" alt="Shoes Image" class="img-fluid">
+    </div>
+
+    <div data-aos="fade-up" class="col-md-6">
+      <h2>Stylish Shoes</h2>
+      <p>
+        These shoes offer a perfect blend of style and comfort. Crafted with quality materials,
+        they are designed to provide durability and a modern look for any occasion. Whether you’re
+        heading to work or out for a casual outing, these shoes will keep you comfortable and stylish.
+      </p>
+    </div>
+  </div>
+</div>
+
+
+
+<footer class="footer bg-dark text-white pt-5 pb-4">
+  <div class="container">
+    <div class="row">
+      <!-- About Shoes section aligned to the left -->
+      <div class="col-md-4" data-aos="fade-up">
+        <h5>About Shoes</h5>
+        <p>Welcome to Shoes Store, your go-to destination for stylish, high-quality, and comfortable footwear. We are dedicated to providing the best selection of shoes, ensuring top-notch craftsmanship, durability, and comfort. Whether you're looking for casual, formal, or athletic shoes, we have something for everyone.</p>
+      </div>
+
+      <!-- Quick Links centered between About Shoes and Follow Us -->
+      <div class="col-md-auto" data-aos="fade-up" data-aos-delay="100">
+        <h5 style="text-align:right;">Quick Links</h5>
+        <ul class="list-unstyled" style="text-align:right;">
+            <li><a href="#" class="text-white text-decoration-none quick-link">Home</a></li>
+            <li><a href="#" class="text-white text-decoration-none quick-link">Shop</a></li>
+            <li><a href="#" class="text-white text-decoration-none quick-link">About Us</a></li>
+            <li><a href="#" class="text-white text-decoration-none quick-link">Contact</a></li>
+            <li><a href="#" class="text-white text-decoration-none quick-link">FAQ</a></li>
+        </ul>
+      </div>
+
+      <!-- Follow Us section aligned to the right -->
+      <div class="col-md-4" data-aos="fade-up" data-aos-delay="200"style="text-align:right;">
+        <h5>Follow Us</h5>
+        <ul class="list-inline">
+          <li class="list-inline-item"><a href="#" class="text-white"><i class="fab fa-facebook-f fa-lg"></i></a></li>
+          <li class="list-inline-item"><a href="#" class="text-white"><i class="fab fa-twitter fa-lg"></i></a></li>
+          <li class="list-inline-item"><a href="#" class="text-white"><i class="fab fa-instagram fa-lg"></i></a></li>
+          <li class="list-inline-item"><a href="#" class="text-white"><i class="fab fa-pinterest fa-lg"></i></a></li>
+        </ul>
+      </div>
+    </div>
+    <hr>
+    <p class="text-center">&copy; 2025 Shoes Website. All rights reserved.</p>
+  </div>
+</footer>
+
+<!-- Additional CSS for animated center-to-sides underline effect for Quick Links -->
+<style>
+    .quick-link {
+        position: relative; /* Needed for positioning the underline */
+    }
+
+    .quick-link::before {
+        content: ''; /* Create an empty element */
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        width: 0; /* Start with no underline */
+        height: 2px; /* Set the underline thickness */
+        background-color: white; /* Set the underline color */
+        transition: width 0.7s ease, left 0.3s ease; /* Animate the width and position */
+        /* Center the underline */
+    }
+
+    .quick-link:hover::before {
+        width: 100%; /* Underline expands to full width on hover */
+        left: 0%; /* Underline starts from the left */
+    }
+</style>
+
+{% endblock main-content %}

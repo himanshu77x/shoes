@@ -1,0 +1,71 @@
+{% extends "app/base.html" %}
+{% load static %}
+
+{% block title %}Registration{% endblock title %}
+
+{% block main-content %}
+<div class="container">
+    <div class="row my-5">
+        <div class="col-md-6 offset-md-3">
+            <h2 class="text-center mb-4">Create Your Account</h2>
+            <hr>
+
+            <form action="" method="post" novalidate class="shadow p-4 rounded bg-light">
+                {% csrf_token %}
+                
+                <!-- Username Field -->
+                <div class="mb-3">
+                    {{ form.username.label_tag }}
+                    {{ form.username }}
+                    <small class="text-danger">{{ form.username.errors|striptags }}</small>
+                </div>
+                
+                <!-- Email Field -->
+                <div class="mb-3">
+                    {{ form.email.label_tag }}
+                    {{ form.email }}
+                    <small class="text-danger">{{ form.email.errors|striptags }}</small>
+                </div>
+                
+                <!-- Password Field -->
+                <div class="mb-3">
+                    {{ form.password1.label_tag }}
+                    {{ form.password1 }}
+                    <small class="text-danger">{{ form.password1.errors|striptags }}</small>
+                </div>
+
+                <!-- Confirm Password Field -->
+                <div class="mb-3">
+                    {{ form.password2.label_tag }}
+                    {{ form.password2 }}
+                    <small class="text-danger">{{ form.password2.errors|striptags }}</small>
+                </div>
+
+                <button type="submit" class="btn btn-primary w-100 py-2 rounded-pill">Register</button>
+                <br>
+
+                <div class="text-center">
+                    <small class="text-muted">Already have an account?</small>
+                    <a href="{% url 'login' %}" class="text-primary fw-bold">Login Now</a>
+                </div>
+
+                {% if form.non_field_errors %}
+                <div class="my-3">
+                    {% for error in form.non_field_errors %}
+                    <p class="alert alert-danger">{{ error }}</p>
+                    {% endfor %}
+                </div>
+                {% endif %}
+
+                {% if messages %}
+                {% for msg in messages %}
+                <div class="alert alert-{{msg.tags}}" role="alert">
+                    {{ msg }}
+                </div>
+                {% endfor %}
+                {% endif %}
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock main-content %}

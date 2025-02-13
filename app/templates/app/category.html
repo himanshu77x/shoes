@@ -1,0 +1,45 @@
+{% extends "app/base.html" %}
+{% load static %}
+
+{% block title %}All Shoes{% endblock title %}
+
+{% block head %}
+<!-- Bootstrap CSS -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+{% endblock head %}
+
+{% block main-content %}
+<div class="container my-5">
+    <div class="row justify-content-center">
+        <div class="col-md-9">
+            <div class="row">
+                {% for prod in product %}
+                <div class="col-12 col-md-4 mb-4">  <!-- 3 items per row on medium screens -->
+                    <div class="card shadow-sm border-0 rounded">
+                        <a href="{% url 'product-detail' prod.id %}" class="text-decoration-none text-dark">
+                            <div style="width: 100%; height: 300px; overflow: hidden; margin-left: 6px;">
+                                <img src="{{ prod.product_image.url }}" class="card-img-top rounded-top" alt="{{ prod.title }}" 
+                                     style="width: 100%; height: 100%; object-fit: cover;">
+                            </div>
+                            <div class="card-body text-center">
+                                <h6 class="fw-bold">{{ prod.title }}</h6>
+                                <p class="fw-bold text-danger mb-1">
+                                    RS. {{ prod.price }}/-
+                                    <small class="fw-light text-decoration-line-through text-danger">{{ prod.discount_price }}</small>
+                                </p>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>
+
+{% block scripts %}
+<!-- Bootstrap Bundle with Popper -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+{% endblock scripts %}
+
+{% endblock main-content %}
