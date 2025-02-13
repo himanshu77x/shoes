@@ -102,18 +102,19 @@ STATIC_URL = '/static/'
 
 # Ensure this exists
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'static'),
-]
+     os.path.join(BASE_DIR, 'static/app'),
 
+]
 # Ensure this exists (for collectstatic)
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"  # ✅ Whitenoise use कर रहे हो
 
 
-# Media files
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+
 
 # Authentication
 LOGIN_URL = '/account/login/'
