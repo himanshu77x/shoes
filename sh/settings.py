@@ -23,7 +23,7 @@ SECRET_KEY = 'django-insecure-f3ch88-7*1=8(n*p2o#_uuncab$g!=l=1gz-)ezxonwg-)6gcd
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False  # ✅ Production के लिए False कर दिया
 
-ALLOWED_HOSTS = ['shoes-3.onrender.com', '127.0.0.1']
+ALLOWED_HOSTS = ['*', '127.0.0.1']
 
 # Installed Apps
 INSTALLED_APPS = [
