@@ -25,7 +25,8 @@ SECRET_KEY = 'django-insecure-f3ch88-7*1=8(n*p2o#_uuncab$g!=l=1gz-)ezxonwg-)6gcd
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['shoes-3.onrender.com']
+
 
 
 
